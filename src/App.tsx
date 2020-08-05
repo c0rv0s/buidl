@@ -25,7 +25,7 @@ function App() {
       <textarea placeholder="Start typing..." onChange={(x) => translate(x.target.value)} value={text}/>
       <p>{translated}</p>
       <footer className="footer">
-        Made by <a href="https://onenathan.codes">Nathan Mueller</a>
+        Made by <a href="https://onenathan.codes">Nathan</a>
       </footer>
     </div>
   );

@@ -24,4 +24,13 @@ i {
   left: 50%;
   width: 300px;
   margin-left: -150px;
+  color: rgb(160, 160, 160);
+}
+
+a:link {
+  color: rgb(160, 160, 160);
+}
+
+a:visited {
+  color: rgb(160, 160, 160);
 }
