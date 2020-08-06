@@ -1,6 +1,8 @@
 import React, {useState} from 'react';
 import './App.css';
 
+const suffixes = ['erings', 'ering', 'ings', 'ing', 'in', 'ers', 'er', 's']
+
 function App() {
   const [text, setText] = useState("")
   const [translated, setTranslated] = useState("")
@@ -11,13 +13,20 @@ function App() {
     for (let i in words) {
       let word = words[i].toLowerCase()
       let numL = (word.match(/l/g) || []).length 
-      let newWord: string = ""
-      if (word.substring(word.length-2) === "er") {
+      let newWord: string = word
+      if (numL) {
         newWord = word.replace(/l/g, "")
-        newWord = newWord.substring(0, word.length-3) + "l".repeat(numL) + "er"
-      }
-      else {
-        newWord = word.replace(/l/g, "") + "l".repeat(numL)
+        let changed: boolean = false
+        for (let j in suffixes) {
+          if (word.endsWith(suffixes[j])) {
+            newWord = newWord.substring(0, word.length-suffixes[j].length-numL) 
+            newWord += "l".repeat(numL)
+            newWord += suffixes[j]
+            changed = true
+            break
+          }
+        }
+        if (!changed) newWord += "l".repeat(numL)
       }
       newWords[i] = newWord
     }
