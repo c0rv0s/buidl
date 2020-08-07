@@ -43,7 +43,7 @@ function App() {
       {translated.length > 0 && <i>Behold...</i>}
       <p>{translated}</p>
       <footer className="footer">
-        Made by <a href="https://onenathan.codes">Nathan</a>
+        Made by <a href="https://twitter.com/c0rv0s">Nathan</a>
       </footer>
     </div>
   );
