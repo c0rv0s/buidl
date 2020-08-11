@@ -3,6 +3,12 @@
   padding-top: 64px;
 }
 
+.container {
+  width: 90vw;
+  max-height: 90vw;
+  margin-left: 5vw;
+}
+
 textarea {
   margin-top: 24px;
   width: 40vw;
@@ -19,11 +25,11 @@ p {
 
 .footer {
   position: absolute;
-  bottom: 0%;
-  margin-bottom: 30px;
+  top: 100%;
+  margin-top: -50px;
   left: 50%;
-  width: 300px;
-  margin-left: -150px;
+  width: 200px;
+  margin-left: -100px;
   color: rgb(160, 160, 160);
 }
 
@@ -50,6 +56,6 @@ a:visited {
 }
 
 .apply-shake {
-  animation: shake 0.2s;
+  animation: shake .2s;
   animation-iteration-count: infinite;
 }

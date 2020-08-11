@@ -44,30 +44,33 @@ function App() {
 
   return (
     <div className="App">
-      <i className="big-text">If you can dream it, you can meme it</i>
-      <br/>
-      <textarea 
-        placeholder="Try typing something with the letter L..." 
-        onChange={(x) => translate(x.target.value)} 
-        value={text}
-      />
-      <br/><br/>
-      {translated.length > 0 && <i className="big-text">Behold...</i>}
-      {extreme && <p className="apply-shake">{extremeTranslation}</p>}
-      {!extreme && <p>{translated}</p>}
-      <br/>
-      {translated.length > 10 && 
-        <span>
-          <label>
-            <i>Extreme Mode (use at your own risk)</i>
-            <input 
-              type="checkbox" 
-              checked={extreme}
-              onChange={() => {setExtreme(!extreme)}}
-              />
-          </label>
-        </span>
-      }
+      <div className="container">
+        <i className="big-text">If you can dream it, you can meme it</i>
+        <br/>
+        <textarea 
+          placeholder="Try typing something with the letter L..." 
+          onChange={(x) => translate(x.target.value)} 
+          value={text}
+        />
+        <br/><br/>
+        {translated.length > 0 && <i className="big-text">Behold...</i>}
+        {extreme && <p className="apply-shake">{extremeTranslation}</p>}
+        {!extreme && <p>{translated}</p>}
+        <br/>
+        {translated.length >= 8 && 
+          <span>
+            <label>
+              <i>Extreme Mode (use at your own risk)</i>
+              <input 
+                type="checkbox" 
+                checked={extreme}
+                onChange={() => {setExtreme(!extreme)}}
+                />
+            </label>
+          </span>
+        }
+      </div>
+      
       <footer className="footer">
         Made by <a href="https://twitter.com/c0rv0s">Nathan</a>
       </footer>
