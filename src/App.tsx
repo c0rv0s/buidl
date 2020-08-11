@@ -6,12 +6,15 @@ const suffixes = ['erings', 'ering', 'ings', 'ing', 'in', 'ers', 'er', 's']
 function App() {
   const [text, setText] = useState("")
   const [translated, setTranslated] = useState("")
+  const [extreme, setExtreme] = useState(false)
+  const [extremeTranslation, setExtremeTranslation] = useState("")
 
   const translate = (text: string) => {
     let words: string[] = text.split(" ")
     let newWords: string[] = []
+    let newWordsExtreme: string[] = []
     for (let i in words) {
-      let word = words[i].toLowerCase()
+      let word = words[i].toLowerCase().trim()
       let numL = (word.match(/l/g) || []).length 
       let newWord: string = word
       if (numL) {
@@ -29,19 +32,42 @@ function App() {
         if (!changed) newWord += "l".repeat(numL)
       }
       newWords[i] = newWord
+      newWordsExtreme[i] = newWord
+      if (!numL && newWord !== " " && newWord !== "") {
+        newWordsExtreme[i] = newWord + 'l'
+      }
     }
     setText(text)
     setTranslated(newWords.join(" "))
+    setExtremeTranslation(newWordsExtreme.join(" "))
   }
 
   return (
     <div className="App">
-      <i>If you can dream it, you can meme it</i>
+      <i className="big-text">If you can dream it, you can meme it</i>
       <br/>
-      <textarea placeholder="Try typing something with the letter L..." onChange={(x) => translate(x.target.value)} value={text}/>
+      <textarea 
+        placeholder="Try typing something with the letter L..." 
+        onChange={(x) => translate(x.target.value)} 
+        value={text}
+      />
       <br/><br/>
-      {translated.length > 0 && <i>Behold...</i>}
-      <p>{translated}</p>
+      {translated.length > 0 && <i className="big-text">Behold...</i>}
+      {extreme && <p className="apply-shake">{extremeTranslation}</p>}
+      {!extreme && <p>{translated}</p>}
+      <br/>
+      {translated.length > 10 && 
+        <span>
+          <label>
+            <i>Extreme Mode (use at your own risk)</i>
+            <input 
+              type="checkbox" 
+              checked={extreme}
+              onChange={() => {setExtreme(!extreme)}}
+              />
+          </label>
+        </span>
+      }
       <footer className="footer">
         Made by <a href="https://twitter.com/c0rv0s">Nathan</a>
       </footer>
