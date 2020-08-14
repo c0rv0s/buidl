@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import './App.css';
+import Slider from './Slider'
 
 const suffixes = ['erings', 'ering', 'ings', 'ing', 'in', 'ers', 'er', 's']
 
@@ -8,6 +9,7 @@ function App() {
   const [translated, setTranslated] = useState("")
   const [extreme, setExtreme] = useState(false)
   const [extremeTranslation, setExtremeTranslation] = useState("")
+  const [slider, setSlider] = useState(50)
 
   const translate = (text: string) => {
     let words: string[] = text.split(" ")
@@ -53,8 +55,19 @@ function App() {
           value={text}
         />
         <br/><br/>
-        {translated.length > 0 && <i className="big-text">Behold...</i>}
-        {extreme && <p className="apply-shake">{extremeTranslation}</p>}
+        {translated.length > 0 && <i className="big-text">Behodl...</i>}
+        {
+          extreme && 
+          <p 
+            style={{
+              animationName: `shake`,
+              animationDuration: `${slider===0?0:(110-slider)/300}s`,
+              animationIterationCount: 'infinite'
+            }}
+          >
+            {extremeTranslation}
+          </p>
+        }
         {!extreme && <p>{translated}</p>}
         <br/>
         {translated.length >= 8 && 
@@ -68,6 +81,9 @@ function App() {
                 />
             </label>
           </span>
+        }
+        {
+          extreme && translated.length >= 8 && <Slider slider={slider} setSlider={setSlider} />
         }
       </div>
       
