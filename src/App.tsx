@@ -88,7 +88,7 @@ function App() {
       </div>
       
       <footer className="footer">
-        Made by <a href="https://twitter.com/c0rv0s">Nathan</a>
+        Made by <a href="https://onenathan.codes/">Nathan</a>
       </footer>
     </div>
   );
